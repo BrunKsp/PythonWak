@@ -44,7 +44,7 @@ def cadastro(request):
 
 
 
-def login(request):
+def logar(request):
     if request.method == "GET":
         return render(request, 'login.html')
 
@@ -54,15 +54,19 @@ def login(request):
         senha = request.POST.get('senha')
         user = authenticate(username=nome,password=senha)
 
-    if user is not None:
-        login(request, user)
-        return redirect('/divulgar/novo_pet')
+        if user is not None:
+            login(request ,user)
+            return redirect('/divulgar/cadastroPet')
 
-    else :
-      messages.add_message(request, constants.ERROR, 'Usuário ou senha inválidos')
-      return render(request, 'login.html')
+        else :
+            messages.add_message(request, constants.ERROR, 'Usuário ou senha inválidos')
+            return render(request, 'login.html')
 
 
-def Logout(request):
+def sair(request):
     logout(request)
+    
+    if request.user.is_authenticated:
+        return redirect('/divulgar/novo_pet')
+    
     return redirect('/auth/login')
