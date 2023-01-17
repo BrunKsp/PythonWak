@@ -7,7 +7,7 @@ from .models import PedidoAdocao
 from datetime import datetime
 
 
-@login_required 
+
 def listar_pets (request):
     if request.method == 'GET':
         pets = Pet.objects.filter(status = "P")
@@ -53,3 +53,4 @@ def ver_pedido_adocao(request):
     if request.method == "GET":
         pedidos = PedidoAdocao.objects.filter(usuario=request.user).filter(status="AG")
         return render(request, 'ver_pedido_adocao.html', {'pedidos': pedidos})
+

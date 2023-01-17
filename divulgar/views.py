@@ -55,6 +55,7 @@ def cadastroPet (request) :
 
 
 @login_required
+
 def seus_pets(request):
     if request.method == "GET":
         pets = Pet.objects.filter(usuario=request.user)
@@ -65,9 +66,8 @@ def remover_pet(request,id):
     pet = Pet.objects.get(id=id)
    
     if not pet.usuario == request.user:
-            messages.add_message(request, constants.ERROR, 'Esse pet não é seu!')
-            return redirect('/divulgar/seus_pets')
-    
+                messages.add_message(request, constants.ERROR, 'Esse pet não é seu!')
+                return redirect('/divulgar/seus_pets')
     pet.delete()
     messages.add_message(request, constants.SUCCESS, 'Removido com sucesso.')
     return redirect('/divulgar/seus_pets')

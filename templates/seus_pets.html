@@ -19,6 +19,15 @@
         <div class="col-md-2 bg-side sidebar">
           <h2>ADO.TE</h2>
           <hr />
+                    <a class="nav-link text-white" href ="{%url 'listar_pets'%}">Home</a>
+                    <hr />
+                    <a class="nav-link text-white" href ="{%url 'cadastroPet'%}">Divulgar</a>
+                    <hr />
+                    <a class="nav-link text-white" href ="{%url 'seus_pets'%}">Seus Pets</b></a>
+                    <hr />
+                    <a class="nav-link text-white" href ="{%url 'ver_pedido_adocao'%}">Suas Adoções</a>
+                    <hr />
+                  
         </div>
 
         <div class="col-md">
@@ -29,7 +38,7 @@
               {% for message in messages %}
               <div class="alert {{message.tags}}">{{message}}</div>
               {% endfor %} {% endif %}
-              <h3 class="font-vinho">Quero divulgar</h3>
+              <h3 class="font-vinho">Meus Pets</h3>
               <hr />
 
               <table class="tabela" cellpadding="20">
@@ -56,7 +65,7 @@
                     {% endif%}
                   </td>
                   <td>
-                    <a href="{%urls 'remover_pet'pet.id%}" class="btn btn-danger">REMOVER</a>
+                    <a href="{% url 'remover_pet' pet.id %}" class="btn btn-danger">REMOVER</a>
                   </td>
                 </tr>
                 {% endfor %}

@@ -8,8 +8,10 @@ from django.shortcuts import redirect
 
 
 def cadastro(request):
+    
     if request.user.is_authenticated:
-        return redirect('/divulgar/novo_pet')
+        return redirect('/adotar/listar_pet')
+    
     if request.method == "GET":
         return render(request, 'cadastro.html')
 
@@ -56,7 +58,7 @@ def logar(request):
 
         if user is not None:
             login(request ,user)
-            return redirect('/divulgar/cadastroPet')
+            return render(request , 'listar_pet.html')
 
         else :
             messages.add_message(request, constants.ERROR, 'Usuário ou senha inválidos')
@@ -64,9 +66,9 @@ def logar(request):
 
 
 def sair(request):
+    
     logout(request)
-    
     if request.user.is_authenticated:
-        return redirect('/divulgar/novo_pet')
+        return redirect('/divulgar/listar_pet')
     
-    return redirect('/auth/login')
+    return render(request , 'listar_pet.html')
